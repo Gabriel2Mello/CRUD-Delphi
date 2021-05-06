@@ -36,7 +36,6 @@ object frmMain: TfrmMain
     Height = 695
     Align = alLeft
     TabOrder = 1
-    ExplicitLeft = -6
     object Panel2: TPanel
       Left = 1
       Top = 1

@@ -20,7 +20,6 @@ type
     btnHorse: TButton;
     procedure btnFuncionarioClick(Sender: TObject);
     procedure btnFornecedorClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
     procedure btnHorseClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
@@ -45,7 +44,7 @@ implementation
 {$R *.dfm}
 
 uses
-  X1101_G1, X1102_G1, TesteHorse, DAO;
+  X1101_G1, X1102_G1, Horse_G1, DAO;
 
 { TfrmMain }
 
@@ -81,13 +80,6 @@ procedure TfrmMain.btnHorseClick(Sender: TObject);
 begin
   AbaHorse;
   ValidaAbaAberta(pgControl, 'Teste Horse')
-end;
-
-procedure TfrmMain.Button1Click(Sender: TObject);
-var
-  qryBanco: TUniQuery;
-begin
-  qryBanco := GetBanco;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
@@ -143,7 +135,7 @@ end;
 
 procedure TfrmMain.AbaHorse;
 var
-  frmHorse: TfrmHorse;
+  frmHorse_G1: TfrmHorse;
   TabSheet: TTabSheet;
 begin
   ValidaAbaAberta(pgControl, 'Teste Horse');
@@ -151,10 +143,10 @@ begin
   TabSheet.Name:= 'tbHorse';
   TabSheet.Caption:= 'Teste Horse';
 
-  frmHorse:= TfrmHorse.Create(Self);
-  frmHorse.Parent:= TabSheet;
+  frmHorse_G1:= TfrmHorse.Create(Self);
+  frmHorse_G1.Parent:= TabSheet;
   TabSheet.PageControl := pgControl;
-  frmHorse.Show;
+  frmHorse_G1.Show;
 end;
 
 end.

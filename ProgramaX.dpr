@@ -9,7 +9,7 @@ uses
   X1102_G1 in 'X1102_G1.pas' {frmX1102_G1},
   X1102_F1 in 'X1102_F1.pas' {frmX1102_F1},
   X1104_F1 in 'X1104_F1.pas' {frmX1104_F1},
-  TesteHorse in 'TesteHorse.pas' {frmHorse},
+  Horse_G1 in 'Horse_G1.pas' {frmHorse},
   Horse_F1 in 'Horse_F1.pas' {frmHorse_F1};
 
 {$R *.res}

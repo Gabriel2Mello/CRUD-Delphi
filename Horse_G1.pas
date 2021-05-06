@@ -1,4 +1,4 @@
-unit TesteHorse;
+unit Horse_G1;
 
 interface
 
@@ -9,7 +9,7 @@ uses
   cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxNavigator,
   dxDateRanges, dxScrollbarAnnotations, Data.DB, cxDBData, cxGridLevel,
   cxGridCustomTableView, cxGridTableView, cxGridDBTableView, cxClasses,
-  cxGridCustomView, cxGrid, cxGroupBox, cxCheckGroup, Datasnap.DBClient;
+  cxGridCustomView, cxGrid, cxGroupBox, cxCheckGroup, Datasnap.DBClient, System.UITypes;
 
 type
   TfrmHorse = class(TForm)
@@ -52,12 +52,18 @@ type
     procedure btnPrimeiroClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure btnVisualizarClick(Sender: TObject);
+    procedure dtsMainDataChange(Sender: TObject; Field: TField);
   private
+    FCodigo: string;
+    FNome: string;
     { Private declarations }
   public
     { Public declarations }
     procedure SetActivePage;
-    procedure AbreForm(state: string; id: integer);
+    procedure AbreForm(estado: string);
+    property codigo: string read FCodigo write FCodigo;
+    property nome: string read FNome write FNome;
   end;
 
 var
@@ -72,22 +78,20 @@ implementation
 uses
   DAO, MainForm, JSon, DataSet.Serialize, Horse_F1;
 
-procedure TfrmHorse.AbreForm(state: string; id: integer);
+procedure TfrmHorse.AbreForm(estado: string);
 var
   frmHorse: TfrmHorse_F1;
 begin
   frmHorse:= TfrmHorse_F1.Create(Self);
 
   try
-    //if state <> 'novo' then
-      //frmHorse.qryMaster.AddWhere('T.ID = ' + id);
-
-    frmHorse.estado := state;
-    frmHorse.codigo := id;
+    frmHorse.estado := estado;
+    frmHorse.codigo := codigo;
+    frmHorse.nome   := nome;
     frmHorse.ShowModal;
   finally
     frmHorse.Free;
-    //dtsMain.DataSet.Refresh;
+    btnCarregar.Click;
   end;
 end;
 
@@ -96,7 +100,6 @@ var
   JSonValue: TJSonValue;
   JsonArray: TJSonArray;
   JSonItens: TJSonValue;
-  vDataSet: TDataSet;
 begin
   cliMain.EmptyDataSet;
   frmDAO.RESTRequest1.Execute;
@@ -105,7 +108,6 @@ begin
     JsonArray:= JsonValue.GetValue<TJSOnArray>('');
 
     for JSonItens in JsonArray do
-    begin
       with dtsMain.DataSet do
       begin
         Append;
@@ -113,7 +115,7 @@ begin
         FieldByName('nome').Text := JsonItens.GetValue<string>('nome');
         Post;
       end;
-    end;
+    dtsMain.DataSet.First;
   finally
     JsonValue.Free;
   end;
@@ -131,7 +133,7 @@ end;
 
 procedure TfrmHorse.btnEditarClick(Sender: TObject);
 begin
-  AbreForm('editar', (dtsMain.DataSet.FieldByName('codigo').Text).ToInt64);
+  AbreForm('editar');
 end;
 
 procedure TfrmHorse.btnEsquerdaClick(Sender: TObject);
@@ -163,7 +165,7 @@ end;
 
 procedure TfrmHorse.btnNovoClick(Sender: TObject);
 begin
-  AbreForm('novo', 0);
+  AbreForm('novo');
 end;
 
 procedure TfrmHorse.btnPrimeiroClick(Sender: TObject);
@@ -176,6 +178,11 @@ begin
   dtsMain.DataSet.Last;
 end;
 
+procedure TfrmHorse.btnVisualizarClick(Sender: TObject);
+begin
+  AbreForm('visualizar');
+end;
+
 procedure TfrmHorse.Button1Click(Sender: TObject);
 begin
   dtsMain.DataSet.Next;
@@ -184,6 +191,12 @@ end;
 procedure TfrmHorse.Button2Click(Sender: TObject);
 begin
   dtsMain.DataSet.Prior;
+end;
+
+procedure TfrmHorse.dtsMainDataChange(Sender: TObject; Field: TField);
+begin
+  codigo := dtsMain.DataSet.FieldByName('codigo').Text;
+  nome   := dtsMain.DataSet.FieldByName('nome').Text;
 end;
 
 procedure TfrmHorse.FormShow(Sender: TObject);

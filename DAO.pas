@@ -19,6 +19,10 @@ type
     RESTResponse2: TRESTResponse;
     RESTRequest3: TRESTRequest;
     RESTResponse3: TRESTResponse;
+    RESTRequest4: TRESTRequest;
+    RESTResponse4: TRESTResponse;
+    RESTRequest5: TRESTRequest;
+    RESTResponse5: TRESTResponse;
   private
     { Private declarations }
   public

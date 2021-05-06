@@ -32,8 +32,6 @@ object frmHorse: TfrmHorse
       Caption = #218'ltimo'
       TabOrder = 11
       OnClick = btnUltimoClick
-      ExplicitLeft = 699
-      ExplicitTop = -4
     end
     object btnPrimeiro: TButton
       Left = 617
@@ -110,6 +108,7 @@ object frmHorse: TfrmHorse
       Align = alLeft
       Caption = 'Visualizar'
       TabOrder = 4
+      OnClick = btnVisualizarClick
     end
     object btnExcluir: TButton
       Left = 265
@@ -199,6 +198,8 @@ object frmHorse: TfrmHorse
     Height = 544
     Align = alClient
     TabOrder = 2
+    ExplicitLeft = 175
+    ExplicitTop = 46
     object gridMainDBTableView1: TcxGridDBTableView
       Navigator.Buttons.CustomButtons = <>
       ScrollbarAnnotations.CustomAnnotations = <>
@@ -244,6 +245,7 @@ object frmHorse: TfrmHorse
   end
   object dtsMain: TDataSource
     DataSet = cliMain
+    OnDataChange = dtsMainDataChange
     Left = 464
     Top = 168
   end

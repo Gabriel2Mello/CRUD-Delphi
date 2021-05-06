@@ -4,7 +4,7 @@
         <ProjectVersion>19.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -128,7 +128,7 @@
             <Form>frmX1104_F1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="TesteHorse.pas">
+        <DCCReference Include="Horse_G1.pas">
             <Form>frmHorse</Form>
             <FormType>dfm</FormType>
         </DCCReference>

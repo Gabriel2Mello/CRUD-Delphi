@@ -29,7 +29,6 @@ object frmHorse_F1: TfrmHorse_F1
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitWidth = 421
     object Label1: TLabel
       Left = 16
       Top = 9
@@ -53,8 +52,6 @@ object frmHorse_F1: TfrmHorse_F1
     TabOrder = 1
     Properties.ActivePage = tabDados
     Properties.CustomButtons.Buttons = <>
-    ExplicitWidth = 421
-    ExplicitHeight = 126
     ClientRectBottom = 129
     ClientRectLeft = 4
     ClientRectRight = 380
@@ -62,8 +59,6 @@ object frmHorse_F1: TfrmHorse_F1
     object tabDados: TcxTabSheet
       Caption = 'Dados'
       ImageIndex = 0
-      ExplicitWidth = 413
-      ExplicitHeight = 98
       object Label4: TLabel
         Left = 15
         Top = 59
@@ -103,8 +98,6 @@ object frmHorse_F1: TfrmHorse_F1
     Height = 41
     Align = alBottom
     TabOrder = 2
-    ExplicitTop = 167
-    ExplicitWidth = 421
     object btnSalvar: TButton
       Left = 1
       Top = 1
